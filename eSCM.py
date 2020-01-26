@@ -12,7 +12,7 @@ import datetime, random, time, locale, re, string
 
 # 테스트서버 입력
 # server = input('* 테스트서버 번호를 입력해주세요. >> ')[:2]
-# server = '01'
+server = {server}
 
 driver = webdriver.Chrome('/Users/tf-mac-059/Desktop/python/chromedriver')
 browser = '/Users/tf-mac-059/Desktop/python/chromedriver'
