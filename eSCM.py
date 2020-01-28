@@ -231,16 +231,16 @@ time.sleep(1)
 
 driver.find_element_by_link_text('new eSCM').click()
 time.sleep(2)
-driver.find_element_by_link_text('상품관리').click()
+driver.find_element_by_link_text('견적서관리').click()
 time.sleep(2)
 
-Select(driver.find_element_by_xpath('/html/body/div/div[1]/div/div[2]/div/div[2]/div[1]/div/form/div[1]/div[1]/fieldset/div/div/select')).select_by_visible_text('상품코드')
-driver.find_element_by_xpath('/html/body/div/div[1]/div/div[2]/div/div[2]/div[1]/div/form/div[1]/div[1]/fieldset/div/div/input').send_keys(Prd_code)
-driver.find_element_by_link_text('검색').click()
+Select(driver.find_element_by_xpath('/html/body/div/div[1]/div/div[2]/div/div[2]/div[1]/div/div/form/div[1]/div[1]/fieldset/div/div/select')).select_by_visible_text('상품코드')
+driver.find_element_by_xpath('/html/body/div/div[1]/div/div[2]/div/div[2]/div[1]/div/div/form/div[1]/div[1]/fieldset/div/div/input').send_keys(Prd_code)
+driver.find_element_by_xpath('/html/body/div/div[1]/div/div[2]/div/div[2]/div[1]/div/div/form/div[2]/div[2]/button[1]').click()
 time.sleep(3)
 
 # 조회한 상품의 상태가 'MD승인대기'가 맞는지 검증
-ListTable = driver.find_리element_by_xpath('//*[@id="app"]/div[1]/div/div[2]/div/div[2]/div[4]/div/div/table/tbody').text
+ListTable = driver.find_element_by_xpath('//*[@id="app"]/div[1]/div/div[2]/div/div[2]/div[4]/div/div/table/tbody').text
 assert 'MD승인대기' in ListTable
 # 상세페이지로 이동하여 승인처리
 driver.find_element_by_xpath('//*[@id="app"]/div[1]/div/div[2]/div/div[2]/div[4]/div/div/table/tbody/tr[1]/td[11]/button').click()
@@ -413,14 +413,15 @@ class Product:
       driver.find_element_by_id('login-submit').click()
       time.sleep(1)
 
-      driver.find_element_by_xpath('//*[@id="top-nav"]/div/div[2]/ul[1]/li[6]/a').click()
+      driver.find_element_by_link_text('new eSCM').click()
       time.sleep(2)
-      driver.find_element_by_xpath('//*[@id="nav_collapse"]/ul[1]/li[2]/a').click()
+      driver.find_element_by_link_text('견적서관리').click()
       time.sleep(2)
 
-      Select(driver.find_element_by_xpath('//*[@id="app"]/div[1]/div/div[2]/div/div[2]/div[1]/div/div/form/div[1]/div[1]/fieldset/div/div/select')).select_by_visible_text('상품코드')
-      driver.find_element_by_xpath('//*[@id="app"]/div[1]/div/div[2]/div/div[2]/div[1]/div/div/form/div[1]/div[1]/fieldset/div/div/input').send_keys(Prd_code2)
-      driver.find_element_by_xpath('//*[@id="app"]/div[1]/div/div[2]/div/div[2]/div[1]/div/div/form/div[2]/div[2]/button[1]').click()
+      # 검색조건 설정
+      Select(driver.find_element_by_xpath('/html/body/div/div[1]/div/div[2]/div/div[2]/div[1]/div/div/form/div[1]/div[1]/fieldset/div/div/select')).select_by_visible_text('상품코드')
+      driver.find_element_by_xpath('/html/body/div/div[1]/div/div[2]/div/div[2]/div[1]/div/div/form/div[1]/div[1]/fieldset/div/div/input').send_keys(Prd_code2)
+      driver.find_element_by_xpath('/html/body/div/div[1]/div/div[2]/div/div[2]/div[1]/div/div/form/div[2]/div[2]/button[1]').click()
       time.sleep(3)
 
       # 조회한 상품의 상태가 'MD승인대기'가 맞는지 검증
@@ -648,7 +649,7 @@ driver.find_element_by_id('login-submit').click()
 time.sleep(1)
 
 # new eSCM 메뉴 클릭
-driver.find_element_by_xpath('//*[@id="top-nav"]/div/div[2]/ul[1]/li[6]/a').click()
+driver.find_element_by_link_text('new eSCM').click()
 time.sleep(1)
 # 공급사 관리 메뉴 클릭
 driver.find_element_by_xpath('//*[@id="nav_collapse"]/ul[1]/li[4]/a').click()
