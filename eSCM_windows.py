@@ -12,10 +12,10 @@ import datetime, random, time, locale, re, string
 
 # 테스트서버 입력
 # server = input('* 테스트서버 번호를 입력해주세요. >> ')[:2]
-server = '01'
+server = '02'
 
-driver = webdriver.Chrome('C:/Users/임시/Desktop/chromedriver.exe')
-browser = 'C:/Users/임시/Desktop/chromedriver.exe'
+driver = webdriver.Chrome('c:\User\임시\Desktop\chromedriver.exe')
+browser = 'c:\User\임시\Desktop\chromedriver.exe'
 driver = webdriver.Chrome(browser)
 
 now = datetime.datetime.today()
@@ -95,8 +95,6 @@ driver.find_element_by_xpath('/html/body/div[2]/div[1]/div/div/div/div/div[3]/di
 time.sleep(1)
 
 #상품코드
-driver.file_detector
-
 P_code = driver.find_element_by_xpath('//*[@id="app"]/div[1]/div/div[2]/div/div[2]/form/div[1]/div[2]/div[2]/div[1]/div/div[2]/div/input').send_keys(Prd_code)
 time.sleep(1)
 driver.find_element_by_xpath('//*[@id="app"]/div[1]/div/div[2]/div/div[2]/form/div[1]/div[2]/div[2]/div[1]/div/div[2]/div/button').click()
