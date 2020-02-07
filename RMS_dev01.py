@@ -176,7 +176,12 @@ driver.find_element_by_xpath('/html/body/div/div/main/div/div/div[2]/div/div/div
 time.sleep(1)
 
 # 입하 수량 등록 페이지 데이터 검증
-증
+C1 = driver.find_element_by_xpath('/html/body/div/div[7]/main/div/div/div[2]/div[1]/div[2]/div/div[1]/div[1]/div[1]/div').text
+assert '유통기한' in C1 # 발주서상의 유통기한 설정값 일 검증
+C2 = driver.find_element_by_xpath('/html/body/div/div[7]/main/div/div/div[2]/div[3]/div/div/div[1]/div[1]/div[1]/div').text
+assert '2030' in C2 # 발주서상의 유통기한 설정값 년 검증
+C3 = driver.find_element_by_xpath('/html/body/div/div[7]/main/div/div/div[2]/div[4]/div/div/div[1]/div[1]/div[1]/div').text
+assert '12' in C3 # 발주서상의 유통기한 설정값 월 검증
 C4 = driver.find_element_by_xpath('/html/body/div/div[7]/main/div/div/div[2]/div[5]/div/div/div[1]/div[1]/div[1]/div').text
 assert '31' in C4 # 발주서상의 유통기한 설정값 일 검증
 
@@ -194,6 +199,7 @@ time.sleep(1)
 driver.find_element_by_xpath('/html/body/div/div[2]/main/div/div/div[1]/div[1]/div/div/div[3]/div/input').send_keys("/Users/tf-mac-059/Desktop/python/12345.png")
 # 포장불량 이슈 1개 등록
 driver.find_element_by_xpath('/html/body/div/div[2]/main/div/div/div[2]/div[2]/div/div[2]/div/div/div[1]/div/input').send_keys('1')
+time.sleep(1)
 # 저장
 driver.find_element_by_xpath('/html/body/div/div[2]/main/div/div/div[6]/button').click()
 time.sleep(1)
