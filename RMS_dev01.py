@@ -5,7 +5,7 @@ from selenium.webdriver.support.ui import Select
 import subprocess, datetime, time
 
 # 테스트서버 입력
-server = '02'
+server = '01'
 rms_web_id = 'qa_auto_test'
 rms_web_pw = 'kurlyqa123'
 
