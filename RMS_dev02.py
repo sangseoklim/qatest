@@ -286,7 +286,77 @@ F1 = driver.find_element_by_xpath('/html/body/div/div/main/div/div/div[2]/div[3]
 assert '10개 / 10개 / 2개' in F1
 time.sleep(1)
 
-print ('* RMS > 검품 > 검품완료 처리 결과 : Pass')
+# 입하 확정 조회
+driver.get('https://m' + server +'.rms.dev.kurly.com/#/dashboard/receiving/receivedList')
+time.sleep(1)
+driver.find_element_by_xpath('/html/body/div/div/main/div/div/div/div/div/div/div/div[1]/div/input').send_keys(Pom)
+time.sleep(1)
+driver.find_element_by_xpath('/html/body/div/div/main/div/div/div[1]/div/div/div/div/div[1]/div/input').send_keys(Keys.RETURN)
+time.sleep(1)
+
+# 입하 확정 조회 데이터 검증
+L1 = driver.find_element_by_xpath('/html/body/div/div/main/div/div/div[2]/div[2]/div/div[1]/span[1]').text # 검수자
+assert 'qa_auto_test' in L1
+L2 = driver.find_element_by_xpath('/html/body/div/div/main/div/div/div[2]/div[2]/div/div[1]/span[2]').text # 검품자
+assert 'qa_auto_test' in L2
+L3 = driver.find_element_by_xpath('/html/body/div/div/main/div/div/div[2]/div[2]/div/div[1]/span[4]').text # 발주코드
+assert Pom in L3
+L4 = driver.find_element_by_xpath('/html/body/div/div/main/div/div/div[2]/div[2]/div/div[1]/span[5]').text # 공급자명
+assert '・ jy_auto_vendor' in L4
+L5 = driver.find_element_by_xpath('/html/body/div/div/main/div/div/div[2]/div[2]/div/div[1]/span[6]').text # 상품코드
+assert 'QA1111222222' in L5
+L6 = driver.find_element_by_xpath('/html/body/div/div/main/div/div/div[2]/div[2]/div/div[1]/span[7]').text # 대체코드
+assert '・ QA888888888' in L6
+L7 = driver.find_element_by_xpath('/html/body/div/div/main/div/div/div[2]/div[2]/div/div[1]/span[8]').text # 센터상품명
+assert '[센터] QA자동화테스트 상품' in L7
+L8 = driver.find_element_by_xpath('/html/body/div/div/main/div/div/div[2]/div[2]/div/div[2]/span[1]').text # 날짜
+assert '유통 2030-12-31' in L8
+L9 = driver.find_element_by_xpath('/html/body/div/div/main/div/div/div[2]/div[2]/div/div[2]/span[2]').text # 발주/입하/이슈 수량
+assert '・ 10 ・ 10 ・ 2 ・ 확정' in L9
+L10 = driver.find_element_by_xpath('/html/body/div/div/main/div/div/div[2]/div[2]/div/div[2]/span[3]').text # 확정수량
+assert '8' in L10
+
+print ('* RMS > 입하 확정 조회 검증 결과 : Pass')
+
+# 검품 완료 조회
+driver.get('https://m' + server +'.rms.dev.kurly.com/#/dashboard/inspection/inspectedList')
+time.sleep(1)
+driver.find_element_by_xpath('/html/body/div/div/main/div/div/div/div/div/div/div/div[1]/div/input').send_keys(Pom)
+time.sleep(1)
+driver.find_element_by_xpath('/html/body/div/div/main/div/div/div[1]/div/div/div/div/div[1]/div/input').send_keys(Keys.RETURN)
+time.sleep(1)
+
+# 검품 완료 데이터 검증
+M1 = driver.find_element_by_xpath('/html/body/div/div/main/div/div/div[2]/div[2]/div/div[1]/span[1]').text # 검수자
+assert 'qa_auto_test' in M1
+M2 = driver.find_element_by_xpath('/html/body/div/div/main/div/div/div[2]/div[2]/div/div[1]/span[2]').text # 검품자
+assert 'qa_auto_test' in M2
+M3 = driver.find_element_by_xpath('/html/body/div/div/main/div/div/div[2]/div[2]/div/div[1]/span[4]').text # 발주코드
+assert Pom in M3
+M4 = driver.find_element_by_xpath('/html/body/div/div/main/div/div/div[2]/div[2]/div/div[1]/span[5]').text # 공급사명
+assert '・ jy_auto_vendor' in M4
+M5 = driver.find_element_by_xpath('/html/body/div/div/main/div/div/div[2]/div[2]/div/div[1]/span[6]').text # 상품코드
+assert 'QA1111222222' in M5
+M6 = driver.find_element_by_xpath('/html/body/div/div/main/div/div/div[2]/div[2]/div/div[1]/span[7]').text # 대체코드
+assert '・ QA888888888' in M6
+M7 = driver.find_element_by_xpath('//html/body/div/div/main/div/div/div[2]/div[2]/div/div[1]/span[8]').text # 센터상품
+assert '[센터] QA자동화테스트 상품' in M7
+L8 = driver.find_element_by_xpath('/html/body/div/div/main/div/div/div[2]/div[2]/div/span[1]').text # 날짜
+assert '유통 2030-12-31' in L8
+M9 = driver.find_element_by_xpath('/html/body/div/div/main/div/div/div[2]/div[2]/div/span[2]').text # 발주/입하/이슈 수량
+assert '・ 10 ・ 10 ・ 2 ・ 확정' in M9
+M10 = driver.find_element_by_xpath('/html/body/div/div/main/div/div/div[2]/div[2]/div/span[3]').text # 확정수량
+assert '8' in M10
+M11 = driver.find_element_by_xpath('/html/body/div/div/main/div/div/div[2]/div[2]/div/div[2]/div[1]/div/span[1]').text # 이슈문구1
+assert '패키지_오염' in M11
+M12 = driver.find_element_by_xpath('/html/body/div/div/main/div/div/div[2]/div[2]/div/div[2]/div[1]/div/span[2]').text # 이슈수량
+assert '1' in M12
+M13 = driver.find_element_by_xpath('/html/body/div/div/main/div/div/div[2]/div[2]/div/div[2]/div[2]/div/span[1]').text # 이슈문구2
+assert '유통기한(제조일자)_유통기한(제조일자) 기준미달' in M13
+M14 = driver.find_element_by_xpath('/html/body/div/div/main/div/div/div[2]/div[2]/div/div[2]/div[2]/div/span[2]').text # 이슈수
+assert '1' in M14
+
+print ('* RMS > 검품 완료 조 검증 결과 : Pass')
 
 # --------------- RMS 어드민 검증 시작 --------------------
 
