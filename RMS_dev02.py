@@ -356,7 +356,7 @@ assert '유통기한(제조일자)_유통기한(제조일자) 기준미달' in M
 M14 = driver.find_element_by_xpath('/html/body/div/div/main/div/div/div[2]/div[2]/div/div[2]/div[2]/div/span[2]').text # 이슈수
 assert '1' in M14
 
-print ('* RMS > 검품 완료 조 검증 결과 : Pass')
+print ('* RMS > 검품 완료 조회 검증 결과 : Pass')
 
 # --------------- RMS 어드민 검증 시작 --------------------
 
