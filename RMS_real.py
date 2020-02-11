@@ -5,6 +5,8 @@ from selenium.webdriver.support.ui import Select
 import subprocess, datetime, time
 
 # 테스트서버 입력
+md_id = 'qa_md1@kurlycorp.com'
+md_pw = 'kurly123!@#'
 rms_web_id = 'qa_auto_test'
 rms_web_pw = 'kurlyqa123'
 
@@ -22,16 +24,23 @@ print (now)
 # eSCM md 로그인
 driver.get ('https://escm.kurly.com/escm/sign')
 # 아이디 입력란을 찾은 후, 아이디를 입력함
-driver.find_element_by_id('user_id').send_keys ('qa_md1@kurlycorp.com')
+driver.find_element_by_id('user_id').send_keys (md_id)
 # 비밀번호 입력란을 찾은 후, 비밀번호를 입력함
-driver.find_element_by_id('user_pwd').send_keys ('kurly123!@#')
+driver.find_element_by_id('user_pwd').send_keys (md_pw)
 # 로그인 버튼을 찾은 후, 클릭
 driver.find_element_by_id('login-submit').click()
 time.sleep(1)
 
-# GNB > new eSCM > 발주관리 메뉴 이동
-driver.find_element_by_partial_link_text('new eSCM').click()
+# 테스트 상품 사용여부 Y로 변경하기
+driver.find_element_by_link_text('new eSCM').click()
 time.sleep(1)
+driver.get ('https://partner.kurly.com/#/goods/28787')
+Select(driver.find_element_by_xpath('/html/body/div/div[1]/div/div[2]/div/div[2]/form/div[1]/div[2]/div[4]/div[1]/div/div[2]/select')).select_by_visible_text('Y : 판매중')
+# 등록 버튼 클릭
+driver.find_element_by_xpath('/html/body/div/div[1]/div/div[2]/div/div[2]/form/div[9]/button[1]').click()
+time.sleep(1)
+
+# GNB > new eSCM > 발주관리 메뉴 이동
 driver.find_element_by_partial_link_text('발주관리').click()
 time.sleep(1)
 
@@ -106,6 +115,9 @@ driver.find_element_by_xpath('/html/body/div/div[1]/div/div[2]/div/div[2]/div[5]
 time.sleep(1)
 # 확인 팝업창
 driver.find_element_by_xpath('/html/body/div[2]/div[1]/div/div/footer/div/button[1]').click()
+time.sleep(4)
+# 로그아웃
+driver.find_element_by_xpath('/html/body/div/div[1]/nav/div/ul[2]/li[3]/a').click()
 
 print ('* eSCM > 발주서 확정 결과 : Pass')
 
@@ -573,6 +585,26 @@ driver.find_element_by_xpath('/html/body/div/div[1]/div/div[2]/div/div[2]/div[3]
 time.sleep(3)
 
 print ('* RMS입고관리 > 입고 라벨 출력 결과 : Pass')
+
+# 테스트 상품 사용여부 N 처리해주기
+# eSCM md 로그인
+driver.get ('https://escm.kurly.com/escm/sign')
+# 아이디 입력란을 찾은 후, 아이디를 입력함
+driver.find_element_by_id('user_id').send_keys (md_id)
+# 비밀번호 입력란을 찾은 후, 비밀번호를 입력함
+driver.find_element_by_id('user_pwd').send_keys (md_pw)
+# 로그인 버튼을 찾은 후, 클릭
+driver.find_element_by_id('login-submit').click()
+time.sleep(1)
+
+# 테스트 상품 사용여부 Y로 변경하기
+driver.find_element_by_link_text('new eSCM').click()
+time.sleep(1)
+driver.get ('https://partner.kurly.com/#/goods/28787')
+Select(driver.find_element_by_xpath('/html/body/div/div[1]/div/div[2]/div/div[2]/form/div[1]/div[2]/div[4]/div[1]/div/div[2]/select')).select_by_visible_text('Y : 판매중')
+# 등록 버튼 클릭
+driver.find_element_by_xpath('/html/body/div/div[1]/div/div[2]/div/div[2]/form/div[9]/button[1]').click()
+time.sleep(1)
 
 # 현재 브라우저를 종료함
 driver.close()
